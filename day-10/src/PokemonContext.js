@@ -1,12 +1,5 @@
 import React from "react";
 
-const PokemonContext = React.createContext({
-  pokemon: [],
-  filter: "",
-  selectedPokemon: null,
-  pokemonSet: () => {},
-  filterSet: () => {},
-  selectedPokemonSet: () => {},
-});
+const PokemonContext = React.createContext({});
 
 export default PokemonContext;

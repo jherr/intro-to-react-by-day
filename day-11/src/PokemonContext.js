@@ -1,8 +1,5 @@
 import React from "react";
 
-const PokemonContext = React.createContext({
-  state: {},
-  dispatch: () => {},
-});
+const PokemonContext = React.createContext({});
 
 export default PokemonContext;
