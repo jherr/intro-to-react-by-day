@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import { CssBaseline } from "@material-ui/core";
 import PokemonType from "./pokemonType";
 import "./App.css";
-import PokemonRow from "./components/PokemonRow";
 import PokemonFilter from "./components/PokemonFilter";
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonTable from "./components/PokemonTable";
+import PokemonContex from "./PokemonContex";
 
 PokemonInfo.propTypes = PokemonType;
 
@@ -39,23 +39,33 @@ function App() {
   if (!pokemon) {
     return <div>Loading data</div>;
   }
-
+// Contex Provider is going to provide the context to any Components that needs it 
+// then set the value{{}} that we want to provide 
+// you can have multiple context running at the same time
   return (
-    <PageContainer>
-      <CssBaseline />
-      <Title>Pokemon Search</Title>
-      <TwoColumnLayout>
-        <div>
-          <PokemonFilter filter={filter} filterSet={filterSet}/>
-          <PokemonTable 
-          filter={filter} 
-          pokemon={pokemon} 
-          selectedPokemonSet={selectedPokemonSet}
-          />
-        </div>
-        {<PokemonInfo selectedPokemon={selectedPokemon} />}
-      </TwoColumnLayout>
-    </PageContainer>
+    <PokemonContex.Provider
+      value={{
+        filter,
+        pokemon,
+        filterSet,
+        selectedPokemon,
+        selectedPokemonSet
+      }}
+    >
+      <PageContainer>
+        <CssBaseline />
+        <Title>Pokemon Search</Title>
+        <TwoColumnLayout>
+          <div>
+            <PokemonFilter />
+            <PokemonTable 
+            />
+          </div>
+          <PokemonInfo  />
+        </TwoColumnLayout>
+      </PageContainer>
+    </PokemonContex.Provider>
+
   );
 }
 

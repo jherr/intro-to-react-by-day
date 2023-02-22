@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import PokemonContex from "../PokemonContex";
 
-const PokemonInfo = ({selectedPokemon})=>{
+const PokemonInfo = ()=>{
+    const {selectedPokemon} = useContext(PokemonContex);
    return selectedPokemon ? (
    <div>
         <h2>{selectedPokemon.name.english}</h2>

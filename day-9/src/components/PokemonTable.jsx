@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PokemonRow from "./PokemonRow";
+import PokemonContex from "../PokemonContex";
 
-const PokemonTable = ({pokemon,filter,selectedPokemonSet}) =>(
-    <table width="100%">
+const PokemonTable = () =>{
+    const {filter, pokemon, selectedPokemonSet} = useContext(PokemonContex);
+    return (
+        <table width="100%">
         <tbody>
         {pokemon
                 .filter(({ name: { english } }) =>
@@ -19,6 +22,9 @@ const PokemonTable = ({pokemon,filter,selectedPokemonSet}) =>(
                 ))}
         </tbody>
     </table>
-)
+    );
+}
+    
+
 
 export default PokemonTable;
