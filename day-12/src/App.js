@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { CssBaseline } from "@material-ui/core";
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider, useSelector, useDispatch } from "react-redux";
 
 import PokemonInfo from "./components/PokemonInfo";
@@ -49,10 +49,12 @@ const stateReducer = (
   }
 };
 
-const store = createStore(stateReducer);
+const store = configureStore({
+  reducer: stateReducer,
+});
 
 function App() {
-  const pokemon = useSelector(({ pokemon }) => pokemon);
+  const pokemon = useSelector((state ) => state.pokemon);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -64,7 +66,7 @@ function App() {
           payload,
         })
       );
-  }, []);
+  }, [dispatch]);
 
   if (!pokemon) {
     return <div>Loading data</div>;
